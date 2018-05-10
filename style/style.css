@@ -1,0 +1,29 @@
+.search-bar{
+  margin: 20px auto;
+  text-align: center;
+}
+input{
+  width: 300px;
+}
+.list-group-item,
+.list-group {
+  cursor: pointer;
+
+}
+.video-detail-title{
+  margin-top: 10px;
+  text-align: center;
+}
+.details{
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.media-object{
+  width: 300px;
+  height: 180px;
+  margin: 3px auto;
+}
+.media-heading{
+  text-align: center;
+}

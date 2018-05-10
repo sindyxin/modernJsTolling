@@ -10,12 +10,12 @@ import React from 'react';
 
 these code equal to below
 */
-const VideoListItem = ({video}) => {
+const VideoListItem = ({video, onSelectedVideo}) => {
   const imageUrl = video.snippet.thumbnails.default.url;
   const title = video.snippet.channelTitle;
   return (
-    <li className="list-group-item">
-      <div className="media media-left">
+    <li onClick={()=>{onSelectedVideo(video)}} className="list-group-item">
+      <div className="media">
         <img className="media-object" src={imageUrl} />
       </div>
       <div className="media-heading">

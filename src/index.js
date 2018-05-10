@@ -6,7 +6,6 @@ import SearchBar from './components/SearchBar';
 import VideoList from './components/VideoList';
 import VideoDetail from "./components/video_detail";
 
-const API_KEY = "AIzaSyCzEpremRQcg3yr8uVlNwSscZS4ThVfUPM";
 
 
 // import { Provider } from 'react-redux';
@@ -28,22 +27,37 @@ const API_KEY = "AIzaSyCzEpremRQcg3yr8uVlNwSscZS4ThVfUPM";
 class App extends Component{
   constructor(props){
     super(props);
-    this.state = { videos:[]};
+    this.state = { 
+      videos:[],
+      selectedVideo: null
+    };
     // YTSearch({key: API_KEY, term: "surfboards"}, function(data){
     //   this.setState({ videos: data });
     //   console.log(data);
     // });
-    YTSearch({key: API_KEY, term: "surfboards"}, (data) => {
-      this.setState({ videos: data });
+    this.videoSearch("node.js")
+    
+  }
+
+  videoSearch(term){
+    YTSearch({key: API_KEY, term: term}, (data) => {
+      this.setState({ 
+        videos: data,
+        selectedVideo: data[0]
+      });
       console.log(data);
     });
+
   }
   render(){
     return (
       <div>
-        <SearchBar />
-        <VideoDetail video={this.state.videos[0]}/>
-        <VideoList videos={this.state.videos} />
+        <SearchBar onSearchTermChange={term => this.videoSearch(term)}/>
+        <VideoDetail video={this.state.selectedVideo}/>
+        <VideoList 
+        onSelectedVideo = {selectedVideo => this.setState({selectedVideo})}
+        videos={this.state.videos} 
+        />
 
       </div>
     );
